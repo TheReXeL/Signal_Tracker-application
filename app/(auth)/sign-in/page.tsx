@@ -23,12 +23,10 @@ const SignIn = () => {
 
   const onSubmit = async (data: SignInFormData) => {
     try {
-      // TODO: اضافه کردن لاجیک ورود بعداً
       console.log("Form submitted:", data);
-      router.push("/"); // موقت
+      router.push("/");
     } catch (e) {
       console.error(e);
-      // می‌تونی بعداً toast یا alert اضافه کنی
     }
   };
 
@@ -45,7 +43,10 @@ const SignIn = () => {
           error={errors.email}
           validation={{
             required: "Email is required",
-            pattern: /^\w+@\w+\.\w+$/,
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Enter a valid email",
+            },
           }}
         />
 
