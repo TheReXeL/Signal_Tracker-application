@@ -15,7 +15,7 @@ const InputField = ({
 }: FormInputProps) => {
   return (
     <div className="space-y-2">
-      <Label htmlFor={name} className=" form-label">
+      <Label htmlFor={name} className="form-label">
         {label}
       </Label>
       <Input
@@ -23,7 +23,7 @@ const InputField = ({
         id={name}
         placeholder={placeholder}
         disabled={disabled}
-        value={value}
+        aria-invalid={Boolean(error)}
         className={cn("form-input", {
           "opacity-50 cursor-not-allowed": disabled,
         })}

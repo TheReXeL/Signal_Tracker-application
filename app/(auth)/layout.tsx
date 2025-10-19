@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="auth-layout">
       <section className="auth-left-section scrollbar-hide-default">
@@ -25,7 +25,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex items-center justify-between">
             <div>
               <cite className="auth-testimonial-author">- Ethan R.</cite>
-              <p className="max-md:text-xs text-gray-500">Retail Invester</p>
+              <p className="max-md:text-xs text-gray-500">Retail Investor</p>
             </div>
             <div className="flex items-center gap-0.5">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -55,4 +55,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default layout;
+export default Layout;
