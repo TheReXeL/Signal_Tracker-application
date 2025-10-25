@@ -9,32 +9,34 @@ let authInstance: ReturnType<typeof betterAuth> | null = null;
 export const getAuth = async () => {
   if (authInstance) return authInstance;
 
-  const mongoose = await connectToDatabase();
-  const db = mongoose.connection.db as Db;
+  try {
+    const mongoose = await connectToDatabase();
+    const db = mongoose.connection.db as Db;
 
-  if (!db) throw new Error("MongoDB connection not found");
+    if (!db) throw new Error("MongoDB connection not found");
 
-  authInstance = betterAuth({
-    database: mongodbAdapter(db),
-    secret: process.env.BETTER_AUTH_SECRET,
-    baseURL: process.env.BETTER_AUTH_URL,
-    emailAndPassword: {
-      enabled: true,
-      disableSignUp: false,
-      requireEmailVerification: false,
-      minPasswordLength: 8,
-      maxPasswordLength: 128,
-      autoSignIn: true,
-    },
-    plugins: [nextCookies()],
-  });
+    authInstance = betterAuth({
+      database: mongodbAdapter(db),
+      secret: process.env.BETTER_AUTH_SECRET,
+      baseURL: process.env.BETTER_AUTH_URL,
+      emailAndPassword: {
+        enabled: true,
+        disableSignUp: false,
+        requireEmailVerification: false,
+        minPasswordLength: 8,
+        maxPasswordLength: 128,
+        autoSignIn: true,
+      },
+      plugins: [nextCookies()],
+    });
 
-  return authInstance;
+    return authInstance;
+  } catch (error) {
+    authInstance = null;
+    throw error;
+  }
 };
 
-let _auth: Awaited<ReturnType<typeof getAuth>> | null = null;
-
 export const auth = async () => {
-  if (!_auth) _auth = await getAuth();
-  return _auth;
+  return getAuth();
 };

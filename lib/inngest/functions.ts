@@ -1,10 +1,21 @@
 import { inngest } from "@/lib/inngest/client";
 import { sendWelcomeEmail } from "../nodemailer";
 
+type UserCreatedEvent = {
+  email: string;
+  name: string;
+};
+
 export const sendSignUpEmail = inngest.createFunction(
   { id: "sign-up-email" },
   { event: "app/user.created" },
-  async ({ event, step }) => {
+  async ({
+    event,
+    step,
+  }: {
+    event: { data: UserCreatedEvent };
+    step: { run: <T>(name: string, fn: () => Promise<T>) => Promise<T> };
+  }) => {
     try {
       const { email, name } = event.data;
 

@@ -22,6 +22,7 @@
     "cmdk": "^1.1.1",
     "inngest": "^3.44.3",
     "lucide-react": "^0.546.0",
+    "md5": "^2.3.0",
     "mongodb": "^6.20.0",
     "mongoose": "^8.19.2",
     "next": "15.5.2",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/md5": "^2.3.6",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.2",
     "@types/react": "^19",

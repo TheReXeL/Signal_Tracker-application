@@ -12,7 +12,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 
   if (!session?.user) redirect("/sign-in");
 
-  const user = {
+  const user: User = {
     id: session.user.id,
     name: session.user.name,
     email: session.user.email,
